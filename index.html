@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Team To-Do (A/B)</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1 class="app-title">Team To-Do</h1>
+    <p class="app-subtitle">Два участника: Person A и Person B</p>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <form id="taskForm" autocomplete="off" class="task-form">
+        <div class="field">
+          <label for="taskText">Задача</label>
+          <input id="taskText" name="taskText" type="text" placeholder="Например: Подготовить отчёт" required />
+        </div>
+
+        <div class="field">
+          <label for="assignee">Кому</label>
+          <select id="assignee" name="assignee" required>
+            <option value="A">Person A</option>
+            <option value="B">Person B</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn primary">Добавить</button>
+      </form>
+    </section>
+
+    <section class="columns">
+      <div class="col">
+        <h2 class="col-title">Person A</h2>
+        <ul id="listA" class="todo-list" aria-live="polite"></ul>
+      </div>
+
+      <div class="col">
+        <h2 class="col-title">Person B</h2>
+        <ul id="listB" class="todo-list" aria-live="polite"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>chsbc</small>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
