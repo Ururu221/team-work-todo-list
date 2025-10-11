@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -7,49 +7,57 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="page-wrap">
+  <div class="page">
     <main class="card">
-      <header class="card__header">
-        <h1>My tasks</h1>
-      </header>
+      <header class="card__head"><h1>My tasks</h1></header>
 
       <section class="card__body">
-        <form id="new-task-form" class="task-form" autocomplete="off">
-          <input id="task-input" type="text" placeholder="New task" />
-          <button type="submit" class="btn btn--primary">Create</button>
+
+        <form id="form" class="new">
+          <input id="inp" class="new__inp" type="text" placeholder="New task" autocomplete="off" />
+          <button class="btn btn--primary" type="submit">Create</button>
         </form>
 
         <div id="empty" class="empty">
           <img src="12.png" alt="No tasks yet" />
-          <!-- Текст уже на изображении -->
         </div>
 
         <ul id="list" class="list" aria-live="polite"></ul>
 
-        <footer class="controls">
-          <div class="filters">
-            <button data-filter="all" class="chip chip--active">All</button>
-            <button data-filter="active" class="chip">Active</button>
-            <button data-filter="completed" class="chip">Completed</button>
-          </div>
-          <div class="actions">
-            <button id="clear-done" class="btn btn--ghost">Clear completed</button>
-          </div>
+        <footer class="bar">
+          <label class="bar__filter">
+            <select id="filter" class="select">
+              <option value="all">All</option>
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+            </select>
+          </label>
+          <button id="clear" class="btn btn--ghost" type="button">Clear completed</button>
         </footer>
       </section>
     </main>
   </div>
 
-  <template id="item-tpl">
-    <li class="item">
+  <template id="tpl">
+    <li class="item" data-id="">
       <label class="check">
         <input type="checkbox" />
-        <span class="check__box"></span>
+        <span class="box"></span>
       </label>
-      <span class="item__text"></span>
-      <div class="item__buttons">
-        <button class="icon icon--edit" title="Edit" aria-label="Edit" ></button>
-        <button class="icon icon--delete" title="Delete" aria-label="Delete"></button>
+
+      <input class="item__text" type="text" value="" readonly />
+
+      <div class="item__btns">
+        <button class="icon" data-act="edit" title="Edit">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 17.25V21h3.75L18.81 8.94l-3.75-3.75L3 17.25zM21.41 6.34a1.25 1.25 0 0 0 0-1.77L19.43 2.6a1.25 1.25 0 0 0-1.77 0l-1.65 1.65 3.75 3.75 1.65-1.66z"/>
+          </svg>
+        </button>
+        <button class="icon icon--danger" data-act="delete" title="Delete">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 7h12M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m-8 0v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V7"/>
+          </svg>
+        </button>
       </div>
     </li>
   </template>
