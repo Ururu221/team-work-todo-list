@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>to-do list</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-wrap">
+    <main class="card">
+      <header class="card__header">
+        <h1>My tasks</h1>
+      </header>
+
+      <section class="card__body">
+        <form id="new-task-form" class="task-form" autocomplete="off">
+          <input id="task-input" type="text" placeholder="New task" />
+          <button type="submit" class="btn btn--primary">Create</button>
+        </form>
+
+        <div id="empty" class="empty">
+          <img src="12.png" alt="No tasks yet" />
+          <!-- Текст уже на изображении -->
+        </div>
+
+        <ul id="list" class="list" aria-live="polite"></ul>
+
+        <footer class="controls">
+          <div class="filters">
+            <button data-filter="all" class="chip chip--active">All</button>
+            <button data-filter="active" class="chip">Active</button>
+            <button data-filter="completed" class="chip">Completed</button>
+          </div>
+          <div class="actions">
+            <button id="clear-done" class="btn btn--ghost">Clear completed</button>
+          </div>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <template id="item-tpl">
+    <li class="item">
+      <label class="check">
+        <input type="checkbox" />
+        <span class="check__box"></span>
+      </label>
+      <span class="item__text"></span>
+      <div class="item__buttons">
+        <button class="icon icon--edit" title="Edit" aria-label="Edit" ></button>
+        <button class="icon icon--delete" title="Delete" aria-label="Delete"></button>
+      </div>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
