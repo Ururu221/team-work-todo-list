@@ -1,21 +1,20 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>to-do list</title>
+  <title>My tasks</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="page">
+  <div class="wrap">
     <main class="card">
       <header class="card__head"><h1>My tasks</h1></header>
 
       <section class="card__body">
-
-        <form id="form" class="new">
-          <input id="inp" class="new__inp" type="text" placeholder="New task" autocomplete="off" />
-          <button class="btn btn--primary" type="submit">Create</button>
+        <form id="createForm" class="row">
+          <input id="newInput" type="text" placeholder="New task" autocomplete="off" />
+          <button class="btn btn--main" type="submit">Create</button>
         </form>
 
         <div id="empty" class="empty">
@@ -24,38 +23,43 @@
 
         <ul id="list" class="list" aria-live="polite"></ul>
 
-        <footer class="bar">
-          <label class="bar__filter">
-            <select id="filter" class="select">
-              <option value="all">All</option>
-              <option value="active">Active</option>
-              <option value="completed">Completed</option>
-            </select>
-          </label>
-          <button id="clear" class="btn btn--ghost" type="button">Clear completed</button>
+        <footer id="footerBar" class="footer hidden">
+          <div id="dd" class="dd" aria-expanded="false" tabindex="0" role="listbox">
+            <button type="button" class="dd__btn">
+              <span id="ddLabel">All tasks</span>
+              <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg>
+            </button>
+            <ul class="dd__menu">
+              <li class="dd__opt" data-val="all">All tasks</li>
+              <li class="dd__opt" data-val="active">Active</li>
+              <li class="dd__opt" data-val="completed">Completed</li>
+            </ul>
+          </div>
+
+          <button id="clearAll" class="btn btn--ghost" type="button">Clear all</button>
         </footer>
       </section>
     </main>
   </div>
 
-  <template id="tpl">
+  <template id="itemTpl">
     <li class="item" data-id="">
-      <label class="check">
-        <input type="checkbox" />
-        <span class="box"></span>
-      </label>
-
       <input class="item__text" type="text" value="" readonly />
-
-      <div class="item__btns">
-        <button class="icon" data-act="edit" title="Edit">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M3 17.25V21h3.75L18.81 8.94l-3.75-3.75L3 17.25zM21.41 6.34a1.25 1.25 0 0 0 0-1.77L19.43 2.6a1.25 1.25 0 0 0-1.77 0l-1.65 1.65 3.75 3.75 1.65-1.66z"/>
+      <div class="actions">
+        <button class="act act--ok" data-act="complete" title="Complete" aria-label="Complete">
+          <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        </button>
+        <button class="act act--edit" data-act="edit" title="Edit" aria-label="Edit">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 20h4l10.5-10.5a2 2 0 0 0-2.828-2.828L5.172 17.172 4 20z"/>
+            <path d="M14.5 5.5l4 4"/>
           </svg>
         </button>
-        <button class="icon icon--danger" data-act="delete" title="Delete">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M6 7h12M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m-8 0v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V7"/>
+        <button class="act act--del" data-act="delete" title="Delete" aria-label="Delete">
+          <svg viewBox="0 0 24 24">
+            <path d="M6 7h12"/><path d="M9 7V5h6v2"/>
+            <path d="M10 11v8M14 11v8"/>
+            <path d="M7 7v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V7"/>
           </svg>
         </button>
       </div>
